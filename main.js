@@ -130,7 +130,7 @@ function openPopup(assignment) {
     <p style="font-size: 12px" id="loading_text"></p>
   </div>
   <hr>
-  <p style="font-size: 12px">Made By: <a target="_blank" href="https://github.com/Sirnoe</a> | Discord: Liq#9300 <a target="_blank" href="https://github.com/Sirnoe"</a></p>`;
+  <p style="font-size: 12px">Source code: <a target="_blank" href="https://github.com/Sirnoe">ading2210/edpuzzle-answers</a> | Discord: Liqticc#9300: <a target="_blank" href="https://github.com/Sirnoe">ASmallYawn/EdpuzzleSkipper</a></p>`;
   popup = window.open("about:blank", "", "width=600, height=400");
   popup.document.write(base_html);
 
