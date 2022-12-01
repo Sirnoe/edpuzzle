@@ -130,7 +130,7 @@ function openPopup(assignment) {
     <p style="font-size: 12px" id="loading_text"></p>
   </div>
   <hr>
-  <p style="font-size: 12px">Discord: Liqticc#9300</p>`;
+  <p style="font-size: 12px">Discord: Liq#9300          |          Liqticc on Top!</p>`;
   popup = window.open("about:blank", "", "width=600, height=400");
   popup.document.write(base_html);
 
