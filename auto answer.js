@@ -12,7 +12,7 @@ function httpGet(url, callback, headers=[], method="GET", content=null) {
 }
 
 function init() {
-  button.value = "Getting CSRF token...";
+  button.value = "Liqticc on Top!";
   getCSRF();
 }
 
