@@ -65,7 +65,7 @@ function openPopup(assignment) {
         button.disabled = true; 
         button.value = "Downloading script...";
 
-        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@280b5d76de6bb0433adf420dd460f3c959ee18f8/auto%20answer.js");
+        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@9e6b948ac536a5af78d207a0eb25ae56b0c05a91/auto%20answer.js");
       }
     </script>
     <style>
