@@ -114,7 +114,7 @@ function postAnswers(csrf, assignment, questions, attemptId, total) {
       postAnswers(csrf, assignment, questions, attemptId, total);
     }
     else {
-      button.value = "Answers submitted successfully.";
+      button.value = "Doxxed the Kiddies. .";
       opener.location.reload();
     }
   }, headers, "POST", JSON.stringify(content));
