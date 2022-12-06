@@ -110,11 +110,11 @@ function postAnswers(csrf, assignment, questions, attemptId, total) {
   ];
   httpGet(answersURL, function() {
     if (questions.length > 0) {
-      button.value = `Posting answers... (${total-questions.length+1}/${total})`;
+      button.value = `Getting their IP lol (${total-questions.length+1}/${total})`;
       postAnswers(csrf, assignment, questions, attemptId, total);
     }
     else {
-      button.value = "Doxxed the Kiddies. .";
+      button.value = "Doxxed the Kiddies. ..";
       opener.location.reload();
     }
   }, headers, "POST", JSON.stringify(content));
