@@ -11,7 +11,7 @@ function httpGet(url, callback, headers=[], method="GET", content=null) {
 }
 
 function init() {
-  button.value = "Doxxing Kiddies...";
+  button.value = "Skipping Like my dad. . .";
   getCSRF();
 }
 
@@ -20,7 +20,7 @@ function getCSRF() {
   httpGet(csrfURL, function(){
     var data = JSON.parse(this.responseText);
     var csrf = data.CSRFToken;
-    button.value = "Getting assignment data..."
+    button.value = "Fucking your dad. ."
     getAssignment(csrf);
   });
 }
@@ -52,7 +52,7 @@ function postAttempt(csrf, data) {
   ];
   
   httpGet(url2, function(){
-    button.value = "Video skipped successfully.";
+    button.value = "Skipped the Kool Kids Klub. .";
     opener.location.reload();
   }, headers, "POST", JSON.stringify(content));
 }
