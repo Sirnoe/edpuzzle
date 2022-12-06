@@ -21,7 +21,7 @@ function getCSRF() {
   httpGet(csrfURL, function(){
     var data = JSON.parse(this.responseText);
     var csrf = data.CSRFToken;
-    button.value = "Getting attempt..."
+    button.value = "Trying to Inject. . ."
     getAttempt(csrf, document.assignment);
   });
 }
@@ -31,7 +31,7 @@ function getAttempt(csrf, assignment) {
   var attemptURL = "https://edpuzzle.com/api/v3/assignments/"+id+"/attempt";
   httpGet(attemptURL, function(){
     var data = JSON.parse(this.responseText);
-    button.value = "Skipping video..."
+    button.value = "Injecting. . !"
     skipVideo(csrf, data);
   });
 }
