@@ -56,7 +56,7 @@ function openPopup(assignment) {
         button.disabled = true; 
         button.value = "Downloading script...";
 
-        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@c6789c3f17a99c7a514691fd43971c51eb748d0b/auto%20answer.js");
+        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@3a7ee23cbe7dba336a0796729fb41c1aa611288e/skipper.js");
       }
       function answer_questions() {
         var skipper = document.getElementById("skipper");
