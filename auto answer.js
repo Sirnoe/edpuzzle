@@ -70,7 +70,7 @@ function skipVideo(csrf, attempt) {
     }
     if (remainingQuestions.length > 0) {
       var total = remainingQuestions.length
-      button.value = `Posting answers... (1/${total})`;
+      button.value = `Posting answers. . . (1/${total})`;
       postAnswers(csrf, document.assignment, remainingQuestions, attemptId, total);
     }
   }, headers, "POST", JSON.stringify(content));
@@ -110,11 +110,11 @@ function postAnswers(csrf, assignment, questions, attemptId, total) {
   ];
   httpGet(answersURL, function() {
     if (questions.length > 0) {
-      button.value = `Getting their IP lol (${total-questions.length+1}/${total})`;
+      button.value = `Executing Script . ! (${total-questions.length+1}/${total})`;
       postAnswers(csrf, assignment, questions, attemptId, total);
     }
     else {
-      button.value = "Doxxed the Kiddies. . .";
+      button.value = "Done! Reloading Page!. . .";
       opener.location.reload();
     }
   }, headers, "POST", JSON.stringify(content));
