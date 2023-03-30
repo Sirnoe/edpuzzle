@@ -1,11 +1,47 @@
 var popup = null;
-var base_url;
-if (typeof document.dev_env != "undefined") {
-  base_url = document.dev_env;
+
+function httpGet(url, callback) {
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", callback);
+  request.open("GET", url, true);
+  request.send();
 }
-else {
-  //get resources off of github to not inflate the jsdelivr stats
-  base_url = <head>
+
+function init() {
+  getAssignment();
+}
+
+function getAssignment(callback) {
+  var assignment_id = window.location.href.split("/")[4];
+  var url1 = "https://edpuzzle.com/api/v3/assignments/"+assignment_id;
+
+  httpGet(url1, function(){
+    var assignment = JSON.parse(this.responseText);
+    openPopup(assignment);
+    getMedia(assignment);
+  });
+}
+
+function openPopup(assignment) {
+  var media = assignment.medias[0];
+  var teacher_assignment = assignment.teacherAssignments[0];
+  var assigned_date = new Date(teacher_assignment.preferences.startDate);
+  var date = new Date(media.createdAt);
+  thumbnail = media.thumbnailURL;
+  if (thumbnail.startsWith("/")) {
+    thumbnail = "https://"+window.location.hostname+thumbnail;
+  }
+  
+  var deadline_text;
+  if (teacher_assignment.preferences.dueDate == "") {
+    deadline_text = "no due date"
+  }
+  else {
+    deadline_text = "due on "+(new Date(teacher_assignment.preferences.dueDate)).toDateString();
+  }
+  
+  var base_html = `
+  <head>
     <script>
       function http_exec(url) {
         var request = new XMLHttpRequest();
@@ -28,70 +64,7 @@ else {
         button.disabled = true; 
         button.value = "Downloading script...";
         http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@e52a5252969215781738dcf79aa85f2cde442d5d/auto%20answer.js");
-      }
-    </script>
-    <style>
-      * {
-        font-family: Arial;
-        line-height: 100%;
-      }
-      li {
-        font-size: 12px;
-      }
-      .no_vertical_margin > * {
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-      .question > * {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        font-weight: bold;
-      }
-      .question {
-        font-size: 14px;
-        width: auto;
-      }
-      .timestamp_div {
-        width: 36px;
-        font-size: 13px;
-        vertical-align: top;
-      }
-      .choice > * {
-        margin-top: 0px;
-        magrin-bottom: 0px;
-      }
-      .choice-correct > * {
-        text-decoration-line: underline;
-      }
-      .title_div > * {
-        margin-top: 0px;
-        margin-bottom: 6px;
-      }
-      #skipper {
-        margin-left: auto;
-      }
-    </style>
-    <title>Answers for: ${media.title}</title>
-  <table>
-    <tr>
-      <td>
-        <img src="${thumbnail}" height="108px">
-      </td>
-      <td style="vertical-align:top" class="title_div">
-        <p style="font-size: 16px"><b>${media.title}</b></h2>
-        <p style="font-size: 12px">Uploaded by ${media.user.name} on ${date.toDateString()}</p>
-        <p style="font-size: 12px">Assigned on ${assigned_date.toDateString()}, ${deadline_text}</p>
-        <p style="font-size: 12px">Correct choices are <u>underlined</u>.</p>
-        <input id="skipper" type="button" value="Skip Video" onclick="skip_video();" disabled/>
-        <input id="answers_button" type="button" value="Answer Questions" onclick="answer_questions();" disabled/>
-      </td>
-    </tr>
-  </table>
-  <hr>
-  <div id="content"> 
-    <p style="font-size: 12px" id="loading_text"></p>
-  </div>
-  <hr>
+      }`;
 
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
