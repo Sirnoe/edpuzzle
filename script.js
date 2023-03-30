@@ -1,70 +1,12 @@
 var popup = null;
-
-function httpGet(url, callback) {
-  var request = new XMLHttpRequest();
-  request.addEventListener("load", callback);
-  request.open("GET", url, true);
-  request.send();
+var base_url;
+if (typeof document.dev_env != "undefined") {
+  base_url = document.dev_env;
 }
-
-function init() {
-  getAssignment();
+else {
+  //get resources off of github to not inflate the jsdelivr stats
+  base_url = "https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@7d435602b8ea078b90206aa53734bd9e0994fae8/main.js";
 }
-
-function getAssignment(callback) {
-  var assignment_id = window.location.href.split("/")[4];
-  var url1 = "https://edpuzzle.com/api/v3/assignments/"+assignment_id;
-
-  httpGet(url1, function(){
-    var assignment = JSON.parse(this.responseText);
-    openPopup(assignment);
-    getMedia(assignment);
-  });
-}
-
-function openPopup(assignment) {
-  var media = assignment.medias[0];
-  var teacher_assignment = assignment.teacherAssignments[0];
-  var assigned_date = new Date(teacher_assignment.preferences.startDate);
-  var date = new Date(media.createdAt);
-  thumbnail = media.thumbnailURL;
-  if (thumbnail.startsWith("/")) {
-    thumbnail = "https://"+window.location.hostname+thumbnail;
-  }
-  
-  var deadline_text;
-  if (teacher_assignment.preferences.dueDate == "") {
-    deadline_text = "no due date"
-  }
-  else {
-    deadline_text = "due on "+(new Date(teacher_assignment.preferences.dueDate)).toDateString();
-  }
-  
-  var base_html = `
-  <head>
-    <script>
-      function http_exec(url) {
-        var request = new XMLHttpRequest();
-        request.open("GET", url, true);
-        request.addEventListener("load", function(){
-          eval(this.responseText);
-        });
-        request.send();
-      }
-      function skip_video() {
-        var button = document.getElementById("skipper");
-        button.disabled = true; 
-        button.value = "Downloading script...";
-        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@3a7ee23cbe7dba336a0796729fb41c1aa611288e/skipper.js");
-      }
-      function answer_questions() {
-        var skipper = document.getElementById("skipper");
-        var button = document.getElementById("answers_button");
-        skipper.disabled = true;
-        button.disabled = true; 
-        button.value = "Downloading script...";
-        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@e52a5252969215781738dcf79aa85f2cde442d5d/auto%20answer.js");
-      }`;
 
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
