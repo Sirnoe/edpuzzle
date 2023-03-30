@@ -193,7 +193,7 @@ function openPopup(assignment) {
     <p style="font-size: 12px" id="loading_text"></p>
   </div>
   <hr>
-  <p style="font-size: 12px">Made by: Liqticc (Partially)</p>`;
+  <p style="font-size: 12px">Made by: <a target="_blank" Liqticc (Partially) | Thanks for buying!</p>`;
   popup = window.open("about:blank", "", "width=600, height=400");
   popup.document.write(base_html);
 
