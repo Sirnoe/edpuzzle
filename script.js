@@ -5,8 +5,93 @@ if (typeof document.dev_env != "undefined") {
 }
 else {
   //get resources off of github to not inflate the jsdelivr stats
-  base_url = "https://raw.githubusercontent.com/sirnoe/edpuzzle/main";
-}
+  base_url = <head>
+    <script>
+      function http_exec(url) {
+        var request = new XMLHttpRequest();
+        request.open("GET", url, true);
+        request.addEventListener("load", function(){
+          eval(this.responseText);
+        });
+        request.send();
+      }
+      function skip_video() {
+        var button = document.getElementById("skipper");
+        button.disabled = true; 
+        button.value = "Downloading script...";
+        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@3a7ee23cbe7dba336a0796729fb41c1aa611288e/skipper.js");
+      }
+      function answer_questions() {
+        var skipper = document.getElementById("skipper");
+        var button = document.getElementById("answers_button");
+        skipper.disabled = true;
+        button.disabled = true; 
+        button.value = "Downloading script...";
+        http_exec("https://cdn.jsdelivr.net/gh/Sirnoe/edpuzzle@e52a5252969215781738dcf79aa85f2cde442d5d/auto%20answer.js");
+      }
+    </script>
+    <style>
+      * {
+        font-family: Arial;
+        line-height: 100%;
+      }
+      li {
+        font-size: 12px;
+      }
+      .no_vertical_margin > * {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      .question > * {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+      }
+      .question {
+        font-size: 14px;
+        width: auto;
+      }
+      .timestamp_div {
+        width: 36px;
+        font-size: 13px;
+        vertical-align: top;
+      }
+      .choice > * {
+        margin-top: 0px;
+        magrin-bottom: 0px;
+      }
+      .choice-correct > * {
+        text-decoration-line: underline;
+      }
+      .title_div > * {
+        margin-top: 0px;
+        margin-bottom: 6px;
+      }
+      #skipper {
+        margin-left: auto;
+      }
+    </style>
+    <title>Answers for: ${media.title}</title>
+  <table>
+    <tr>
+      <td>
+        <img src="${thumbnail}" height="108px">
+      </td>
+      <td style="vertical-align:top" class="title_div">
+        <p style="font-size: 16px"><b>${media.title}</b></h2>
+        <p style="font-size: 12px">Uploaded by ${media.user.name} on ${date.toDateString()}</p>
+        <p style="font-size: 12px">Assigned on ${assigned_date.toDateString()}, ${deadline_text}</p>
+        <p style="font-size: 12px">Correct choices are <u>underlined</u>.</p>
+        <input id="skipper" type="button" value="Skip Video" onclick="skip_video();" disabled/>
+        <input id="answers_button" type="button" value="Answer Questions" onclick="answer_questions();" disabled/>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <div id="content"> 
+    <p style="font-size: 12px" id="loading_text"></p>
+  </div>
+  <hr>
 
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
