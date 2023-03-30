@@ -5,7 +5,7 @@ if (typeof document.dev_env != "undefined") {
 }
 else {
   //get resources off of github to not inflate the jsdelivr stats
-  base_url = "https://raw.githubusercontent.com/sirnoe/edpuzzle/main.js";
+  base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
 }
 
 function http_get(url, callback, headers=[], method="GET", content=null) {
