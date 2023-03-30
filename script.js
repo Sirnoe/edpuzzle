@@ -163,7 +163,7 @@ function openPopup(assignment) {
       <p style="font-size: 16px"><b>${media.title}</b></h2>
       <p style="font-size: 12px">Uploaded by ${media.user.name} on ${date.toDateString()}</p>
       <p style="font-size: 12px">Assigned on ${assigned_date.toDateString()}, ${deadline_text}</p>
-      <p style="font-size: 12px">Correct choices are <u>underlined</u>.</p>
+      <p style="font-size: 12px">Correct choices are <u>underlined</u>. {Currently Broken}</p>
       <input id="skipper" type="button" value="Skip Video" onclick="skip_video();" disabled/>
       <input id="answers_button" type="button" value="Answer Questions" onclick="answer_questions();" disabled/>
       <div id="speed_container" hidden>
@@ -193,7 +193,7 @@ function openPopup(assignment) {
     <p style="font-size: 12px" id="loading_text"></p>
   </div>
   <hr>
-  <p style="font-size: 12px">Made by: <a target="_blank" Liqticc (Partially) | Thanks for buying!</p>`;
+  <p style="font-size: 12px">Made by: Liqticc (Partially) | Thanks for buying!</p>`;
   popup = window.open("about:blank", "", "width=600, height=400");
   popup.document.write(base_html);
 
